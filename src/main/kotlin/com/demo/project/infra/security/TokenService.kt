@@ -40,7 +40,7 @@ class TokenService(
                 .withIssuer("My-Api")
                 .build()
                 .verify(token)
-                .getSubject()
+                .subject
         } catch (ex: JWTVerificationException) {
             throw RuntimeException("Invalid token")
         }

@@ -11,6 +11,6 @@ class UserController {
 
     @GetMapping
     fun getUser(): ResponseEntity<String> {
-        return ResponseEntity.ok("sucesso!")
+        return ResponseEntity.ok("Consegui acessar!")
     }
 }
