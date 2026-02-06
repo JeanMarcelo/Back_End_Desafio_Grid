@@ -27,8 +27,8 @@ class SecurityConfig(
             .cors { }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
-                it.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                it.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                it.requestMatchers(HttpMethod.POST, "/login").permitAll()
+                it.requestMatchers(HttpMethod.POST, "/register").permitAll()
                 it.anyRequest().authenticated()
             }
             .addFilterBefore(
