@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
+
 @Component
 class SecurityFilter(
     private val tokenService: TokenService,
@@ -21,13 +22,15 @@ class SecurityFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-
         val token = recoverToken(request)
         val login = token?.let { tokenService.validateToken(it) }
 
         if (login != null) {
             val user = userRepository.findByEmail(login)
-                ?: throw RuntimeException("User Not Found")
+                ?: run {
+                    filterChain.doFilter(request, response)
+                    return
+                }
 
             val authorities = listOf(SimpleGrantedAuthority("ROLE_USER"))
 

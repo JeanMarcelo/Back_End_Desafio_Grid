@@ -4,7 +4,6 @@ package com.demo.project.posts
 import com.demo.project.dto.PostRequestDTO
 import com.demo.project.user.User
 import org.springframework.data.domain.Sort
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 

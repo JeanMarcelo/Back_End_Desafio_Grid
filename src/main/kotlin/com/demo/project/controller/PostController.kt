@@ -26,9 +26,7 @@ class PostController(
 
     @PostMapping
     fun createPost(
-        @RequestBody postRequest: PostRequestDTO,
-        authentication: Authentication
-    ): ResponseEntity<Post> {
+        @RequestBody postRequest: PostRequestDTO, authentication: Authentication ): ResponseEntity<Post> {
 
         val user = authentication.principal as User
 
@@ -54,13 +52,13 @@ class PostController(
     @PutMapping("/{id}")
     fun update(
         @PathVariable id: Long,
-        @RequestBody body: PostRequestDTO,
+        @RequestBody postBody: PostRequestDTO,
         authentication: Authentication
     ): ResponseEntity<Post> {
 
         val user = authentication.principal as User
 
-        val updatedPost = postService.updatePost(id, body, user)
+        val updatedPost = postService.updatePost(id, postBody, user)
 
         return ResponseEntity.ok(updatedPost)
     }
